@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="/">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banque Misr • Digital Onboarding</title>
+  <!-- IMPORTANT: Set base to your subdirectory -->
+  <base href="/RDO/">
 
-  <!-- Simple Google Font -->
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Banque Misr • Digital Onboarding</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -47,7 +52,6 @@
       max-width: 400px;
     }
 
-    /* Logo */
     .logo {
       width: 90px;
       height: 90px;
@@ -79,7 +83,6 @@
       margin-bottom: 40px;
     }
 
-    /* Simple progress bar */
     .progress {
       width: 280px;
       height: 4px;
@@ -108,7 +111,6 @@
       color: rgba(255, 255, 255, 0.7);
     }
 
-    /* Simple loading dots */
     .dots {
       margin-top: 40px;
       display: flex;
@@ -144,7 +146,6 @@
 <body>
 <div id="splash-screen">
   <div class="container">
-    <!-- Simple Logo -->
     <div class="logo">
       <span>BM</span>
     </div>
@@ -152,7 +153,6 @@
     <h1>Banque Misr</h1>
     <p>Digital Onboarding</p>
 
-    <!-- Simple Progress -->
     <div class="progress">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -160,7 +160,6 @@
     <div class="status" id="statusText">Initializing...</div>
     <div class="percentage" id="percentageText">0%</div>
 
-    <!-- Simple Loading Dots -->
     <div class="dots">
       <div class="dot"></div>
       <div class="dot"></div>
@@ -203,13 +202,21 @@
       }
     }
 
+    // Handle flutter bootstrap loading
+    if (typeof flutterBootstrap !== 'undefined' && flutterBootstrap.ready) {
+      flutterBootstrap.ready.then(() => {
+        updateProgress(30, 'Flutter engine ready');
+        window.flutterEngineReady?.();
+      });
+    }
+
     // Simple loading sequence
     window.flutterEngineReady = () => updateProgress(30, 'Loading engine...');
     window.roadmapReady = () => updateProgress(60, 'Loading roadmap...');
     window.blockersReady = () => updateProgress(80, 'Loading blockers...');
     window.dashboardReady = () => updateProgress(100, 'Ready!');
 
-    // Auto progress for development
+    // Auto progress for development (remove in production)
     setTimeout(() => window.flutterEngineReady?.(), 800);
     setTimeout(() => window.roadmapReady?.(), 2000);
     setTimeout(() => window.blockersReady?.(), 3500);
