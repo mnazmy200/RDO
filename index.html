@@ -3,19 +3,13 @@
 <head>
   <base href="/">
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Banque Misr • Digital Onboarding</title>
-  <link rel="manifest" href="manifest.json">
 
-  <!-- Google Fonts -->
+  <!-- Simple Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome - Fix with integrity hashes -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -36,10 +30,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(145deg, #811838 0%, #5A1127 100%);
+      background: linear-gradient(145deg, #811838, #5A1127);
       color: white;
       z-index: 9999;
-      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.4s ease;
     }
 
     .splash-hidden {
@@ -48,332 +42,132 @@
     }
 
     .container {
-      width: 92%;
-      max-width: 560px;
       text-align: center;
-      padding: 24px 0;
+      padding: 20px;
+      max-width: 400px;
     }
 
     /* Logo */
-    .logo-wrapper {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 24px;
-      position: relative;
-    }
-
-    .logo-circle {
-      width: 100%;
-      height: 100%;
+    .logo {
+      width: 90px;
+      height: 90px;
       background: white;
-      border-radius: 32px;
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      margin: 0 auto 24px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
 
-    .logo-text {
-      font-size: 48px;
+    .logo span {
+      font-size: 36px;
       font-weight: 700;
       color: #811838;
-      line-height: 1;
     }
 
-    .title {
+    h1 {
       font-size: 28px;
       font-weight: 600;
-      letter-spacing: -0.3px;
       margin-bottom: 4px;
       color: white;
     }
 
-    .subtitle {
-      font-size: 15px;
-      font-weight: 400;
-      opacity: 0.85;
+    p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
       margin-bottom: 40px;
-      color: #E0E0E0;
     }
 
-    /* Corporate metrics */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 48px;
-    }
-
-    .metric-card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 16px 8px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(4px);
-    }
-
-    .metric-card i {
-      font-size: 22px;
-      color: #E0E0E0;
-      margin-bottom: 8px;
-    }
-
-    .metric-card .value {
-      font-size: 18px;
-      font-weight: 700;
-      color: white;
-      line-height: 1.2;
-    }
-
-    .metric-card .label {
-      font-size: 10px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #E0E0E0;
-      opacity: 0.8;
-    }
-
-    /* Progress section */
-    .progress-container {
-      margin: 32px 0 24px;
-    }
-
-    .progress-bar {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 100px;
+    /* Simple progress bar */
+    .progress {
+      width: 280px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      margin: 0 auto 20px;
       overflow: hidden;
-      margin-bottom: 16px;
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
       background: white;
-      border-radius: 100px;
-      transition: width 0.3s ease;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      transition: width 0.2s ease;
     }
 
-    .progress-stats {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .status {
       font-size: 13px;
       color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 8px;
     }
 
-    .progress-stage {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 6px 16px;
-      border-radius: 40px;
+    .percentage {
       font-size: 12px;
-      font-weight: 500;
-      color: white;
+      color: rgba(255, 255, 255, 0.7);
     }
 
-    .progress-percent {
-      font-weight: 600;
-      color: white;
-    }
-
-    /* Loading details */
-    .loading-details {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 24px 0;
-      text-align: left;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .detail-item {
+    /* Simple loading dots */
+    .dots {
+      margin-top: 40px;
       display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      justify-content: center;
+      gap: 8px;
     }
 
-    .detail-item:last-child {
-      border-bottom: none;
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      animation: pulse 1.2s infinite;
     }
 
-    .detail-icon {
-      width: 28px;
-      color: #E0E0E0;
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); background: rgba(255, 255, 255, 0.4); }
+      50% { transform: scale(1.2); background: white; }
     }
 
-    .detail-content {
-      flex: 1;
-      font-size: 13px;
-    }
-
-    .detail-label {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-
-    .detail-value {
-      color: white;
-      font-weight: 500;
-    }
-
-    .status-badge {
-      padding: 4px 12px;
-      border-radius: 40px;
-      font-size: 11px;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.15);
-      color: white;
-    }
-
-    .status-badge.success {
-      background: #2E7D32;
-    }
-
-    .status-badge.warning {
-      background: #ED6C02;
-    }
-
-    /* Footer */
     .footer {
-      margin-top: 32px;
+      margin-top: 40px;
       font-size: 11px;
       color: rgba(255, 255, 255, 0.3);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 20px;
       text-transform: uppercase;
       letter-spacing: 1px;
-    }
-
-    /* Journey features preview */
-    .features-preview {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .feature-pill {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 30px;
-      padding: 6px 12px;
-      font-size: 11px;
-      white-space: nowrap;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .feature-pill i {
-      margin-right: 4px;
-      color: #B8860B;
     }
   </style>
 </head>
 <body>
 <div id="splash-screen">
   <div class="container">
-
-    <!-- Logo -->
-    <div class="logo-wrapper">
-      <div class="logo-circle">
-        <span class="logo-text">BM</span>
-      </div>
+    <!-- Simple Logo -->
+    <div class="logo">
+      <span>BM</span>
     </div>
 
-    <div class="title">Banque Misr</div>
-    <div class="subtitle">NTB Onboarding Squad</div>
+    <h1>Banque Misr</h1>
+    <p>Digital Onboarding</p>
 
-    <!-- Corporate metrics matching your app -->
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <i class="fas fa-timeline"></i>
-        <div class="value" id="phasesValue">0</div>
-        <div class="label">Phases</div>
-      </div>
-      <div class="metric-card">
-        <i class="fas fa-exclamation-triangle"></i>
-        <div class="value" id="blockersValue">0</div>
-        <div class="label">Blockers</div>
-      </div>
-      <div class="metric-card">
-        <i class="fas fa-rocket"></i>
-        <div class="value" id="featuresValue">0</div>
-        <div class="label">Features</div>
-      </div>
-      <div class="metric-card">
-        <i class="fas fa-users"></i>
-        <div class="value" id="squadValue">0</div>
-        <div class="label">Squad</div>
-      </div>
+    <!-- Simple Progress -->
+    <div class="progress">
+      <div class="progress-fill" id="progressFill"></div>
     </div>
 
-    <!-- Journey Features Preview -->
-    <div class="features-preview">
-      <span class="feature-pill"><i class="fas fa-face-smile"></i> Digital Identity</span>
-      <span class="feature-pill"><i class="fas fa-credit-card"></i> Account Opening</span>
-      <span class="feature-pill"><i class="fas fa-shield"></i> AML Check</span>
-      <span class="feature-pill"><i class="fas fa-mobile"></i> eKYC</span>
+    <div class="status" id="statusText">Initializing...</div>
+    <div class="percentage" id="percentageText">0%</div>
+
+    <!-- Simple Loading Dots -->
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
 
-    <!-- Main progress -->
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-fill" id="mainProgress" style="width: 0%;"></div>
-      </div>
-      <div class="progress-stats">
-        <span class="progress-stage" id="currentStage">Initializing</span>
-        <span class="progress-percent" id="percentDisplay">0%</span>
-      </div>
-    </div>
-
-    <!-- Loading details matching your app structure -->
-    <div class="loading-details">
-      <div class="detail-item">
-        <div class="detail-icon"><i class="fas fa-microchip"></i></div>
-        <div class="detail-content">
-          <div class="detail-label">Flutter Engine</div>
-          <div class="detail-value" id="engineStatus">Loading...</div>
-        </div>
-        <div class="status-badge" id="engineBadge">Pending</div>
-      </div>
-
-      <div class="detail-item">
-        <div class="detail-icon"><i class="fas fa-road"></i></div>
-        <div class="detail-content">
-          <div class="detail-label">Roadmap Phases</div>
-          <div class="detail-value" id="phasesStatus">Loading phases...</div>
-        </div>
-        <div class="status-badge" id="phasesBadge">Pending</div>
-      </div>
-
-      <div class="detail-item">
-        <div class="detail-icon"><i class="fas fa-dashboard"></i></div>
-        <div class="detail-content">
-          <div class="detail-label">Dashboard</div>
-          <div class="detail-value" id="dashboardStatus">Rendering...</div>
-        </div>
-        <div class="status-badge" id="dashboardBadge">Pending</div>
-      </div>
-
-      <div class="detail-item">
-        <div class="detail-icon"><i class="fas fa-ban"></i></div>
-        <div class="detail-content">
-          <div class="detail-label">Blockers</div>
-          <div class="detail-value" id="blockersStatus">Loading...</div>
-        </div>
-        <div class="status-badge" id="blockersBadge">Pending</div>
-      </div>
-    </div>
-
-    <div class="footer">
-      NTB ONBOARDING SQUAD • Q1 2026
-    </div>
-
+    <div class="footer">NTB Onboarding • Q1 2026</div>
   </div>
 </div>
 
@@ -381,161 +175,50 @@
 
 <script>
   (function() {
-    // Track loading state
+    let progress = 0;
     let engineReady = false;
-    let roadmapReady = false;
-    let dashboardReady = false;
-    let blockersReady = false;
     let splashHidden = false;
 
-    // DOM elements
     const splash = document.getElementById('splash-screen');
-    const mainProgress = document.getElementById('mainProgress');
-    const currentStage = document.getElementById('currentStage');
-    const percentDisplay = document.getElementById('percentDisplay');
+    const progressFill = document.getElementById('progressFill');
+    const statusText = document.getElementById('statusText');
+    const percentageText = document.getElementById('percentageText');
 
-    // Detail elements
-    const engineStatus = document.getElementById('engineStatus');
-    const engineBadge = document.getElementById('engineBadge');
-    const phasesStatus = document.getElementById('phasesStatus');
-    const phasesBadge = document.getElementById('phasesBadge');
-    const dashboardStatus = document.getElementById('dashboardStatus');
-    const dashboardBadge = document.getElementById('dashboardBadge');
-    const blockersStatus = document.getElementById('blockersStatus');
-    const blockersBadge = document.getElementById('blockersBadge');
-
-    // Metric elements
-    const phasesValue = document.getElementById('phasesValue');
-    const blockersValue = document.getElementById('blockersValue');
-    const featuresValue = document.getElementById('featuresValue');
-    const squadValue = document.getElementById('squadValue');
-
-    // Update progress based on actual state
-    function updateProgress() {
+    function updateProgress(value, status) {
       if (splashHidden) return;
 
-      let progress = 0;
-      let stageText = '';
+      progress = Math.min(value, 100);
+      progressFill.style.width = progress + '%';
+      percentageText.innerText = progress + '%';
+      if (status) statusText.innerText = status;
 
-      if (engineReady) progress += 25;
-      if (roadmapReady) progress += 25;
-      if (blockersReady) progress += 25;
-      if (dashboardReady) progress += 25;
-
-      // Update UI
-      mainProgress.style.width = progress + '%';
-      percentDisplay.innerText = progress + '%';
-
-      // Update stage text
-      if (!engineReady) {
-        stageText = 'Loading Flutter Engine';
-      } else if (!roadmapReady) {
-        stageText = 'Loading Roadmap';
-      } else if (!blockersReady) {
-        stageText = 'Loading Blockers';
-      } else if (!dashboardReady) {
-        stageText = 'Rendering Dashboard';
-      } else {
-        stageText = 'Ready';
-      }
-      currentStage.innerText = stageText;
-
-      // Update metrics with dynamic values
-      phasesValue.innerText = roadmapReady ? '5' : '0';
-      blockersValue.innerText = blockersReady ? '3' : '0';
-      featuresValue.innerText = '6';
-      squadValue.innerText = '8';
-
-      // Check if everything is ready
-      if (engineReady && roadmapReady && blockersReady && dashboardReady) {
-        hideSplashIfReady();
-      }
-    }
-
-    // Hide splash when all conditions are met
-    function hideSplashIfReady() {
-      if (splashHidden) return;
-
-      if (engineReady && roadmapReady && blockersReady && dashboardReady) {
-        console.log('✅ All systems ready - hiding splash screen');
-
-        // Final update
-        mainProgress.style.width = '100%';
-        percentDisplay.innerText = '100%';
-        currentStage.innerText = 'Launching Onboarding Squad';
-
-        // Small delay to show 100% state
+      if (progress >= 100) {
         setTimeout(() => {
           splash.classList.add('splash-hidden');
           setTimeout(() => {
             splash.style.display = 'none';
             splashHidden = true;
-          }, 500);
+          }, 400);
         }, 300);
       }
     }
 
-    // Signal handlers
-    window.flutterEngineReady = function() {
-      engineReady = true;
-      engineStatus.innerText = 'Loaded successfully';
-      engineBadge.innerText = 'Ready';
-      engineBadge.className = 'status-badge success';
-      updateProgress();
-    };
+    // Simple loading sequence
+    window.flutterEngineReady = () => updateProgress(30, 'Loading engine...');
+    window.roadmapReady = () => updateProgress(60, 'Loading roadmap...');
+    window.blockersReady = () => updateProgress(80, 'Loading blockers...');
+    window.dashboardReady = () => updateProgress(100, 'Ready!');
 
-    window.roadmapReady = function() {
-      roadmapReady = true;
-      phasesStatus.innerText = '5 phases loaded';
-      phasesBadge.innerText = 'Ready';
-      phasesBadge.className = 'status-badge success';
-      updateProgress();
-    };
+    // Auto progress for development
+    setTimeout(() => window.flutterEngineReady?.(), 800);
+    setTimeout(() => window.roadmapReady?.(), 2000);
+    setTimeout(() => window.blockersReady?.(), 3500);
+    setTimeout(() => window.dashboardReady?.(), 4500);
 
-    window.blockersReady = function() {
-      blockersReady = true;
-      blockersStatus.innerText = 'Active blockers loaded';
-      blockersBadge.innerText = 'Ready';
-      blockersBadge.className = 'status-badge success';
-      updateProgress();
-    };
-
-    window.dashboardReady = function() {
-      dashboardReady = true;
-      dashboardStatus.innerText = 'Onboarding Squad ready';
-      dashboardBadge.innerText = 'Ready';
-      dashboardBadge.className = 'status-badge success';
-      updateProgress();
-    };
-
-    // Handle flutter bootstrap
-    if (typeof flutterBootstrap !== 'undefined' && flutterBootstrap.ready) {
-      flutterBootstrap.ready.then(() => {
-        console.log('📦 Flutter bootstrap ready');
-        window.flutterEngineReady();
-      }).catch(() => {
-        setTimeout(() => window.flutterEngineReady(), 2000);
-      });
-    } else {
-      // Fallback for development
-      setTimeout(() => {
-        window.flutterEngineReady();
-        setTimeout(() => window.roadmapReady(), 1500);
-        setTimeout(() => window.blockersReady(), 2500);
-        setTimeout(() => window.dashboardReady(), 3500);
-      }, 500);
-    }
-
-    // Safety timeout - 10 seconds max
+    // Safety timeout
     setTimeout(() => {
-      if (!splashHidden) {
-        console.warn('⚠️ Safety timeout - forcing splash hide');
-        window.dashboardReady();
-        window.blockersReady();
-        window.roadmapReady();
-      }
-    }, 10000);
-
+      if (!splashHidden) updateProgress(100, 'Ready!');
+    }, 8000);
   })();
 </script>
 </body>
